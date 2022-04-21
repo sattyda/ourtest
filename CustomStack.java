@@ -23,6 +23,14 @@ public class CStack<T> {
         }
     }
 
+    public void iterator(){
+        Node last = this.lastNode;
+        while ( last != null ){
+            System.out.println(last.value);
+            last = last.lastNode;
+        }
+    }
+
     public T peek(){
         if(size==0){
             return null;
