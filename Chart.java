@@ -3,7 +3,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Chart {
+public class DateTest {
 
     public static long randomNum(long min, long max) {
 
@@ -19,11 +19,11 @@ public class Chart {
 
         mycalander.add(Calendar.MONTH, -1);
         mycalander.set(Calendar.DATE, 1);
-        mycalander.set(Calendar.HOUR, 0);
+        mycalander.set(Calendar.HOUR_OF_DAY, 0);
         mycalander.set(Calendar.MINUTE, 0);
         mycalander.set(Calendar.SECOND, 0);
         mycalander.set(Calendar.MILLISECOND, 0);
-        
+
         Date lastMonth1Date = mycalander.getTime();
         long epochTime1Date = lastMonth1Date.getTime();
 
@@ -32,7 +32,7 @@ public class Chart {
 
         mysecondCal.add(Calendar.MONTH, -1);
         mysecondCal.set(Calendar.DATE, mysecondCal.getActualMaximum(Calendar.DATE));
-        mysecondCal.set(Calendar.HOUR, 23);
+        mysecondCal.set(Calendar.HOUR_OF_DAY, 23);
         mysecondCal.set(Calendar.MINUTE, 59);
         mysecondCal.set(Calendar.SECOND, 59);
         mysecondCal.set(Calendar.MILLISECOND, 999);
@@ -46,11 +46,11 @@ public class Chart {
         }
 
         for( int d = 1; d <= mysecondCal.getActualMaximum(Calendar.DATE) ; d++ ){
-            String key =  d+ "/" + mysecondCal.get(Calendar.MONTH) + "/" + mysecondCal.get(Calendar.YEAR);
+            String key =  d+ "/" + (mysecondCal.get(Calendar.MONTH)+1) + "/" + mysecondCal.get(Calendar.YEAR);
             finalData.put( key, 0L );
         }
 
-        
+
         for( Long ll : rawData.keySet() ){
 //            System.out.println( ll );
             Calendar cal = Calendar.getInstance();
@@ -58,12 +58,15 @@ public class Chart {
             String key =  cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH)+1) + "/" + cal.get(Calendar.YEAR);
 
 //            System.out.println(key);
-            if(finalData.get(key) != null){
+//            if(finalData.get(key) != null){
+            try{
                 finalData.put( key , finalData.get(key) + rawData.get(ll) );
+            } catch (Exception d){
+                System.out.println("err start");
+                System.out.println(key);
+                System.out.println("err end");
             }
-
         }
-
 
         for( String ss : finalData.keySet()){
             System.out.println( ss+ " : " + finalData.get(ss) );
