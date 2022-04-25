@@ -1,0 +1,108 @@
+import java.util.Date;
+import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
+
+public class Test3 {
+    public static void main(String[] args) {
+
+         // Exception  1. Checked ( At Time of Compilation  )  // 2. Unchecked ( Runtime )   3 .Error (  )
+
+        StringBuffer ss = new StringBuffer("Hello");
+
+        ss.append("121 : 2787 \n" );
+
+
+        System.out.println(  ss.toString() );
+        ss.insert( 1 , "satty");
+        ss.delete( 1, 6 );
+
+        System.out.println(  ss.toString() );
+
+        long today = System.currentTimeMillis();
+
+        Date tDate = new Date(today);
+
+        Date lastMonth1Day = new Date("1/03/2022 0:00:00");
+        long r1 = lastMonth1Day.getTime();
+
+        Date lastMonthlastDay = new Date("30/03/2022 23:59:59");
+        long r2 = lastMonthlastDay.getTime();
+
+        HashMap<Long , Integer> hh = new HashMap();
+
+        for(int i = 0; i < 10 ; i++){
+            hh.put( rand( r1, r2 ) , ( int )rand( 10, 20 ));
+        }
+
+        HashMap<String , Integer> finalOut = new HashMap();
+
+        finalOut.put("1/03/2022" , 12);
+        finalOut.put("2/03/2022" , 0);
+        finalOut.put("3/03/2022" , 0);
+        finalOut.put("4/03/2022" , 0);
+        finalOut.put("5/03/2022" , 12);
+        finalOut.put("6/03/2022" , 18);
+
+        // finalOut.put("d/M/Y" , 18);
+        // finalOut.put("H:m:i" , 18);
+        //
+
+
+    }
+
+    static long rand(long min , long max){
+
+        return (long )((max-min)* Math.random() + min) ;
+    }
+}
+
+
+
+//// 1. Generate 10 random epoch times for last month ////
+
+
+
+//// 2. Hashmap Key ==> Value => 10 : 20
+
+//[
+//        {
+//            "time" : 1121212121000,
+//            "value" : 12
+//        },
+//
+//        {
+//        "time" : 1121212121000,
+//        "value" : 12
+//        }
+//
+//        {
+//        "time" : 1121212121000,
+//        "value" : 12
+//        }
+//        {
+//        "time" : 1121212121000,
+//        "value" : 12
+//        }
+//
+//        {
+//        "time" : 1121212121000,
+//        "value" : 12
+//        }
+//
+//        {
+//        "time" : 1121212121000,
+//        "value" : 12
+//        }
+//        ]
+
+// '23/03/2022' : 22
+// '23/03/2022' : 22
+// '23/03/2022' : 22
+// '23/03/2022' : 22
+// '23/03/2022' : 22
+// '23/03/2022' : 22
+// '23/03/2022' : 22
+
+//////   fibonacci series /////
+/////  0,1,1,2,3,5,8,13,
+/////     ////
